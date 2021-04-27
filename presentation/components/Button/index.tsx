@@ -6,7 +6,7 @@ interface ButtonProps {
     text: string
 }
 
-export default function Button({ text }: ButtonProps) {
+export function Button({ text }: ButtonProps) {
     const { button, textButton } = styles
     return (
         <TouchableOpacity style={button}>

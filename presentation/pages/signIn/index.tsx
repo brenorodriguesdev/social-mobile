@@ -10,33 +10,21 @@ import {
 import {
     TextInput,
 } from 'react-native-paper';
-import Button from '../../components/Button';
+import { Button, Input } from '../../components';
 
 import styles from './styles'
 
 export default function SignIn() {
 
 
-    const { container, input, button, textButton } = styles;
+    const { container } = styles;
     return (
         <>
             <StatusBar barStyle="dark-content" backgroundColor="#FFF" />
             <View style={container}>
-                <TextInput
-                    mode="outlined"
-                    label='Email'
-                    style={input}
-                    theme={{ colors: { primary: "#0080ff" } }}
-                    keyboardType="email-address"
-                />
-                <TextInput
-                    mode="outlined"
-                    label='Senha'
-                    style={input}
-                    secureTextEntry={true}
-                    theme={{ colors: { primary: "#0080ff" } }}
-                    textContentType="password"
-                />
+                
+                <Input label='Email' keyboardType="email-address" />
+                <Input label='Senha' secureTextEntry={true} textContentType="password" />
                 <Button text="Entrar" />
 
                 <View style={{ flexDirection: 'row' }}>
@@ -47,6 +35,7 @@ export default function SignIn() {
                         <Text>Criar Conta</Text>
                     </TouchableOpacity>
                 </View>
+                
             </View>
         </>
     );
