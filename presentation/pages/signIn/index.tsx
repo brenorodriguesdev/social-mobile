@@ -7,14 +7,12 @@ import {
     StatusBar
 } from 'react-native';
 
-import {
-    TextInput,
-} from 'react-native-paper';
+
 import { Button, Input } from '../../components';
 
 import styles from './styles'
 
-export default function SignIn() {
+export function SignIn() {
 
 
     const { container } = styles;
