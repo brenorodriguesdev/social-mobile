@@ -14,7 +14,7 @@ import Button from '../../components/Button';
 
 import styles from './styles'
 
-export default function SignIn() {
+export default function SignUp() {
 
 
     const { container, input, button, textButton } = styles;
@@ -37,10 +37,12 @@ export default function SignIn() {
                     theme={{ colors: { primary: "#0080ff" } }}
                     textContentType="password"
                 />
-                <Button text="Entrar" />
 
+                <TouchableOpacity style={button}>
+                    <Text style={textButton}>Entrar</Text>
+                </TouchableOpacity>
                 <View style={{ flexDirection: 'row' }}>
-                    <TouchableOpacity style={{ marginRight: 12 }}>
+                    <TouchableOpacity style={{marginRight:12}}>
                         <Text>Esqueceu sua senha?</Text>
                     </TouchableOpacity>
                     <TouchableOpacity>
