@@ -1,14 +1,14 @@
-import { MaterialIcons } from '@expo/vector-icons';
-import React, { useEffect, useState } from 'react';
+import { MaterialIcons, Entypo } from '@expo/vector-icons';
+import React from 'react';
 
 import {
     View,
     Text,
-    TextInput,
-    TouchableOpacity,
-    StatusBar
+    StatusBar,
+    Dimensions
 } from 'react-native';
-import { SearchForm } from '../../components/SearchForm';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { SearchForm, TabNavigation } from '../../components';
 
 
 import styles from './styles'
@@ -16,6 +16,7 @@ import styles from './styles'
 interface HomeProps {
     navigation: any
 }
+
 export function Home({ navigation }: HomeProps) {
 
     const { container } = styles;
@@ -24,8 +25,11 @@ export function Home({ navigation }: HomeProps) {
         <>
             <StatusBar barStyle="dark-content" backgroundColor="#FFF" />
             <View style={container}>
-                <SearchForm text="Buscar amigos..." iconName="my-location" />
-                <Text>Logado</Text>
+                <SearchForm text="Buscar amigos..." />
+                <View>
+                    <Text style={{ color: "#808080" }}>Ops, não foi encontrado nenhum resultado</Text>
+                </View>
+                <TabNavigation />
             </View>
         </>
     );
