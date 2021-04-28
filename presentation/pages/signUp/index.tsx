@@ -9,6 +9,7 @@ import { Validator } from '../../../validation/contracts/validator';
 
 
 import { Button, ErrorText, Input } from '../../components';
+import { SuccessText } from '../../components/SuccessText';
 
 import styles from './styles'
 
@@ -29,6 +30,7 @@ export function SignUp({ createUserUseCase, validator }: SignUpProps) {
     const [passwordConfirmationError, setPasswordConfirmationError] = useState('')
 
     const [mainError, setMainError] = useState('')
+    const [mainSuccess, setMainSuccess] = useState('')
 
     const { container } = styles;
 
@@ -39,6 +41,8 @@ export function SignUp({ createUserUseCase, validator }: SignUpProps) {
                 email,
                 password
             })
+            setMainError('')
+            setMainSuccess('Parabéns, você foi cadastrado com sucesso!')
         }
         catch (error) {
             setMainError(error.message)
@@ -116,6 +120,7 @@ export function SignUp({ createUserUseCase, validator }: SignUpProps) {
                 <ErrorText text={passwordConfirmationError} />
                 <Button text="Cadastrar" disabled={!name || !email || !password || !passwordConfirmation || nameError.length > 0 || emailError.length > 0 || passwordError.length > 0 || passwordConfirmationError.length > 0} onClick={register} />
                 <ErrorText text={mainError} />
+                {mainError.length > 0 || <SuccessText text={mainSuccess} />}
             </View>
         </>
     );
