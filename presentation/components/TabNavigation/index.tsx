@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Entypo, MaterialIcons } from "@expo/vector-icons";
 
 
-export function TabNavigation() {
+export function TabNavigation({ navigation } : any) {
 
     const [menuIndex, setMenuIndex] = useState(0)
 
@@ -42,7 +42,7 @@ export function TabNavigation() {
             }}>
                 <Entypo name="chat" size={20} color={menuIndex === 2 ? "#0080ff" : "#0080ff80"} />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => setMenuIndex(3)} disabled={menuIndex === 3} style={{
+            <TouchableOpacity onPress={() => { setMenuIndex(3); navigation.navigate('SignIn') }} disabled={menuIndex === 3} style={{
                 width: 50,
                 height: 50,
                 justifyContent: 'center',

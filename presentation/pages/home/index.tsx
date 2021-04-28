@@ -29,7 +29,7 @@ export function Home({ navigation }: HomeProps) {
                 <View>
                     <Text style={{ color: "#808080" }}>Ops, não foi encontrado nenhum resultado</Text>
                 </View>
-                <TabNavigation />
+                <TabNavigation navigation={navigation} />
             </View>
         </>
     );
