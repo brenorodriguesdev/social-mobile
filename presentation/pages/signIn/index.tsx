@@ -23,6 +23,8 @@ export function SignIn({ signInUseCase, validator }: SignInProps) {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [emailError, setEmailError] = useState('')
+    const [passwordError, setPasswordError] = useState('')
 
     const { container } = styles;
 
@@ -45,21 +47,21 @@ export function SignIn({ signInUseCase, validator }: SignInProps) {
     }
 
     useEffect(() => {
-        if (email) {
-            const error = validator.validate({ email }, 'email')
-            if (error) {
-                
-            }
+
+        const error = validator.validate({ email }, 'email')
+        if (error) {
+            setEmailError(error.message)
         }
+
     }, [email])
 
     useEffect(() => {
-        if (password) {
-            const error = validator.validate({ password }, 'password')
-            if (error) {
-                
-            }
+
+        const error = validator.validate({ password }, 'password')
+        if (error) {
+            setPasswordError(error.message)
         }
+
     }, [password])
 
     return (
