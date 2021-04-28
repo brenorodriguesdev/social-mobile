@@ -4,13 +4,14 @@ import styles from './styles'
 
 interface ButtonProps {
     text: string
+    disabled: boolean
     onClick: () => void
 }
 
-export function Button({ text, onClick }: ButtonProps) {
-    const { button, textButton } = styles
+export function Button({ text, disabled, onClick }: ButtonProps) {
+    const { button, buttonDisabled, textButton } = styles
     return (
-        <TouchableOpacity style={button} onPress={onClick}>
+        <TouchableOpacity disabled={disabled} style={disabled ? buttonDisabled : button} onPress={onClick}>
             <Text style={textButton}>{text}</Text>
         </TouchableOpacity>
     )

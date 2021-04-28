@@ -49,7 +49,7 @@ export function SignIn({ signInUseCase }: SignInProps) {
 
                 <Input label='Email' keyboardType="email-address" onChangeText={(value: string) => { setEmail(value) }} />
                 <Input label='Senha' secureTextEntry={true} textContentType="password" onChangeText={(value: string) => { setPassword(value) }} />
-                <Button text="Entrar" onClick={enter} />
+                <Button text="Entrar" disabled={!email || !password} onClick={enter} />
 
                 <View style={{ flexDirection: 'row' }}>
                     <TouchableOpacity style={{ marginRight: 12 }}>
