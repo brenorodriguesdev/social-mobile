@@ -4,13 +4,15 @@ import styles from './styles'
 
 interface SearchFormProps {
     text: string
+    change: (text: string) => void;
 }
 
-export function SearchForm({ text }: SearchFormProps) {
+export function SearchForm({ text, change }: SearchFormProps) {
     const { container, input } = styles
     return (
         <View style={container}>
             <TextInput
+                onChangeText={change}
                 style={input}
                 placeholder={text}
                 placeholderTextColor="#999"

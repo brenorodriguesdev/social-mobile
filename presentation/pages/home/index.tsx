@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
     View,
     StatusBar,
 } from 'react-native';
+import { UserModel } from '../../../domain/models/user';
 import { SearchUserUseCase } from '../../../domain/useCases/search-user';
 import { SearchForm, TabNavigation, NotFound, UserList } from '../../components';
 
@@ -15,24 +16,36 @@ interface HomeProps {
     navigation: any
 }
 
-export function Home({ navigation }: HomeProps) {
+export function Home({ navigation, searchUserUseCase }: HomeProps) {
 
     const { container } = styles;
+    const [searchText, setSearchText] = useState('')
+    const [users, setUsers] = useState<UserModel[]>([])
+
+
+    useEffect(() => {
+        async function searchUser() {
+            if (searchText) {
+                try {
+                    const usersModel = await searchUserUseCase.search(searchText)
+                    setUsers(usersModel)
+                } catch (error) {
+                    setUsers([])
+                }
+            }
+        }
+
+        searchUser()
+    }, [searchText])
 
     return (
         <>
             <StatusBar barStyle="dark-content" backgroundColor="#FFF" />
             <View style={container}>
-                <SearchForm text="Pesquisar por pessoas..." />
-                <NotFound />
-                {/* <UserList users={[
-                    { id: 1, name: 'Breno Rodrigues' },
-                    { id: 2, name: 'Max Wesley' },
-                    { id: 3, name: 'Gustavo Lima' },
-                    { id: 4, name: 'Evandro Siqueira' },
-                    { id: 5, name: 'Luis Henrique' },
-                ]} /> */}
-            
+                <SearchForm text="Pesquisar por pessoas..." change={(value) => setSearchText(value)} />
+
+                {searchText.length > 0 && users.length > 0 ? <UserList users={users} /> : searchText.length > 0 && <NotFound />}
+
                 <TabNavigation navigation={navigation} />
             </View>
         </>
