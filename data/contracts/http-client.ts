@@ -1,4 +1,4 @@
 export interface HttpClient {
-    post(body: any, headers?: any): Promise<any>
-    get(params: any, headers?: any): Promise<any>
+    post(body: any, accessToken?: string): Promise<any>
+    get(params: any, accessToken?: string): Promise<any>
 }
