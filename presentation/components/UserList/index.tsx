@@ -1,6 +1,5 @@
-import { TouchableOpacity, Text, View, Dimensions } from "react-native"
+import { Text, View, Dimensions } from "react-native"
 import React from 'react';
-import { EvilIcons, FontAwesome5 } from "@expo/vector-icons";
 import { UserRow } from "../UserRow";
 
 interface User {
