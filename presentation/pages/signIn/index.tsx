@@ -62,6 +62,17 @@ export function SignIn({ signInUseCase, validator, navigation }: SignInProps) {
     }
 
     useEffect(() => {
+        async function isAuthenticated() {
+            const accessToken = await AsyncStorage.getItem('accessToken')
+            if (accessToken) {
+                navigation.navigate('Home')
+            }
+        }
+
+        isAuthenticated()
+    }, [])
+
+    useEffect(() => {
 
         if (email) {
             validateEmail()
@@ -83,7 +94,7 @@ export function SignIn({ signInUseCase, validator, navigation }: SignInProps) {
             <View style={container}>
                 <Input label='Email' keyboardType="email-address" onChangeText={(value: string) => { setEmail(value) }} onBlur={validateEmail} error={emailError.length > 0} />
                 <ErrorText text={emailError} />
-                <Input label='Senha' secureTextEntry={true} textContentType="password" onChangeText={(value: string) => { setPassword(value) } } onBlur={validatePassword} error={passwordError.length > 0} />
+                <Input label='Senha' secureTextEntry={true} textContentType="password" onChangeText={(value: string) => { setPassword(value) }} onBlur={validatePassword} error={passwordError.length > 0} />
                 <ErrorText text={passwordError} />
                 <Button text="Entrar" disabled={!email || !password || emailError.length > 0 || passwordError.length > 0} onClick={enter} />
                 <ErrorText text={mainError} />
