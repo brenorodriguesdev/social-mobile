@@ -6,6 +6,7 @@ export default StyleSheet.create({
     textError: {
         fontSize: 12,
         fontWeight: 'bold',
-        color: 'red'
+        color: 'red',
+        marginBottom: 12
     }
 });
