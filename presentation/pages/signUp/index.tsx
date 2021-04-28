@@ -113,17 +113,6 @@ export function SignUp({ validator }: SignUpProps) {
                 <ErrorText text={passwordConfirmationError} />
                 <Button text="Cadastrar" disabled={!name || !email || !password || !passwordConfirmation || nameError.length > 0 || emailError.length > 0 || passwordError.length > 0 || passwordConfirmationError.length > 0} onClick={register} />
                 <ErrorText text={mainError} />
-
-                <View style={{ flexDirection: 'row', marginTop: 12 }}>
-                    <TouchableOpacity style={{ marginRight: 12 }}>
-                        <Text>Esqueceu sua senha?</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Text>Criar Conta</Text>
-                    </TouchableOpacity>
-                </View>
-
-
             </View>
         </>
     );
