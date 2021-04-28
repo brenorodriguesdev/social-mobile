@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
     StatusBar
 } from 'react-native';
+import { Validator } from '../../../validation/contracts/validator';
 import { SignInUseCase } from '../../../domain/useCases/sign-in';
 
 
@@ -16,8 +17,9 @@ import styles from './styles'
 
 interface SignInProps {
     signInUseCase: SignInUseCase
+    validator: Validator
 }
-export function SignIn({ signInUseCase }: SignInProps) {
+export function SignIn({ signInUseCase, validator }: SignInProps) {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -41,6 +43,24 @@ export function SignIn({ signInUseCase }: SignInProps) {
             console.log(error.message)
         }
     }
+
+    useEffect(() => {
+        if (email) {
+            const error = validator.validate({ email }, 'email')
+            if (error) {
+                
+            }
+        }
+    }, [email])
+
+    useEffect(() => {
+        if (password) {
+            const error = validator.validate({ password }, 'password')
+            if (error) {
+                
+            }
+        }
+    }, [password])
 
     return (
         <>
