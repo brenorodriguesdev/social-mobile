@@ -4,12 +4,14 @@ import {
     View,
     StatusBar,
 } from 'react-native';
+import { SearchUserUseCase } from '../../../domain/useCases/search-user';
 import { SearchForm, TabNavigation, NotFound, UserList } from '../../components';
 
 
 import styles from './styles'
 
 interface HomeProps {
+    searchUserUseCase: SearchUserUseCase
     navigation: any
 }
 
