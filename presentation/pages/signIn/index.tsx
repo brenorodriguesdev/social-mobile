@@ -42,6 +42,9 @@ export function SignIn({ signInUseCase, validator, navigation }: SignInProps) {
                 String(accessToken)
             );
 
+            setMainError('')
+            navigation.navigate('Home')
+
         }
         catch (error) {
             setMainError(error.message)
