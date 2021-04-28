@@ -13,7 +13,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="SignIn">
         <Stack.Screen options={{headerShown: false}} name="SignIn" component={makeSignInRoute} />
-        <Stack.Screen name="SignUp" component={makeSignUpRoute} />
+        <Stack.Screen options={{ title: 'Cadastro' }} name="SignUp" component={makeSignUpRoute} />
         <Stack.Screen options={{headerShown: false}} name="Home" component={Home} />
       </Stack.Navigator>
     </NavigationContainer>

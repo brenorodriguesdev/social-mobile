@@ -7,7 +7,7 @@ import { Dimensions } from 'react-native';
 
 export default StyleSheet.create({
     container: {
-        marginTop: 12,
+        marginTop: 36,
         width: Dimensions.get('window').width * 95 / 100,
         flexDirection: 'row'
     },
@@ -16,7 +16,7 @@ export default StyleSheet.create({
         height: 50,
         backgroundColor: '#FFF',
         color: '#333',
-        borderRadius: 25,
+        borderRadius: 5,
         paddingHorizontal: 20,
         fontSize: 16,
         shadowColor: '#000',
