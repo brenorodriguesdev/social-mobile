@@ -2,13 +2,13 @@ import {
     StyleSheet,
 } from 'react-native';
 
+import { Dimensions } from 'react-native';
+
+
 export default StyleSheet.create({
     container: {
-        position: 'absolute',
-        bottom: 32,
-        left: 20,
-        right: 20,
-        zIndex: 5,
+        marginTop: 12,
+        width: Dimensions.get('window').width * 95 / 100,
         flexDirection: 'row'
     },
     input: {
@@ -26,14 +26,5 @@ export default StyleSheet.create({
             height: 4,
         },
         elevation: 2
-    },
-    button: {
-        width: 50,
-        height: 50,
-        backgroundColor: '#0080ff80',
-        borderRadius: 25,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginLeft: 15
     }
 });

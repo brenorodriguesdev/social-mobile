@@ -8,8 +8,8 @@ interface SearchFormProps {
     iconName: any
 }
 
-export function SearchForms({ text, iconName }: SearchFormProps) {
-    const { container, input, button } = styles
+export function SearchForm({ text, iconName }: SearchFormProps) {
+    const { container, input } = styles
     return (
         <View style={container}>
             <TextInput
@@ -19,11 +19,6 @@ export function SearchForms({ text, iconName }: SearchFormProps) {
                 autoCapitalize="words"
                 autoCorrect={false}
             />
-
-            <TouchableOpacity style={button}>
-                <MaterialIcons name={iconName} size={20} color="#FFF" />
-            </TouchableOpacity>
-
         </View>
     )
 }
