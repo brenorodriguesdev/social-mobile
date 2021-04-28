@@ -2,7 +2,8 @@ import validator from "validator";
 import { Validator } from "../contracts/validator";
 
 export class EmailValidator implements Validator {
-    constructor(private readonly fieldName: string) { }
+    fieldName: string = ''
+    constructor(fieldName: string) { this.fieldName = fieldName }
     validate(data: any): Error | void {
         const isValid = validator.isEmail(data[this.fieldName])
         if (!isValid) {

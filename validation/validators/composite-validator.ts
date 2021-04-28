@@ -1,12 +1,15 @@
 import { Validator } from "../contracts/validator";
 
 export class CompositeValidator implements Validator {
+    fieldName: string = ''
     constructor(private readonly validators: Validator[]) { }
-    validate(data: any): Error | void {
+    validate(data: any, fieldName: string): Error | void {
         for (let validator of this.validators) {
-            const error = validator.validate(data)
-            if (error) {
-                return error
+            if (validator.fieldName === fieldName) {
+                const error = validator.validate(data, fieldName)
+                if (error) {
+                    return error
+                }
             }
         }
     }

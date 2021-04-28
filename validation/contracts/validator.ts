@@ -1,3 +1,4 @@
 export interface Validator {
-    validate(data: any): Error | void
+    fieldName: string
+    validate(data: any, fieldName?: string): Error | void
 }
