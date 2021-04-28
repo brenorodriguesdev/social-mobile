@@ -18,8 +18,9 @@ import styles from './styles'
 interface SignInProps {
     signInUseCase: SignInUseCase
     validator: Validator
+    navigation: any
 }
-export function SignIn({ signInUseCase, validator }: SignInProps) {
+export function SignIn({ signInUseCase, validator, navigation }: SignInProps) {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -88,7 +89,7 @@ export function SignIn({ signInUseCase, validator }: SignInProps) {
                     <TouchableOpacity style={{ marginRight: 12 }}>
                         <Text>Esqueceu sua senha?</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
                         <Text>Criar Conta</Text>
                     </TouchableOpacity>
                 </View>

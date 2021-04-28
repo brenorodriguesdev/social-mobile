@@ -1,13 +1,21 @@
 import React from 'react';
-import { makeCreateUserService } from './main/factories/services/create-user-service-factory';
-import { makeSignInService } from './main/factories/services/sign-in-service-factory';
-import { makeSignInValidation } from './main/factories/validation/sign-in-validation-factory';
-import { makeSignUpValidation } from './main/factories/validation/sign-up-validation-factory';
-import { SignIn, SignUp } from './presentation/pages'
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { makeSignInRoute, makeSignUpRoute } from './main/factories/routes';
+
+const Stack = createStackNavigator();
+
 
 export default function App() {
   return (
-    //<SignIn signInUseCase={makeSignInService()} validator={makeSignInValidation()} />
-    <SignUp createUserUseCase={makeCreateUserService()} validator={makeSignUpValidation()} />
+
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="SignIn">
+        <Stack.Screen name="SignIn" component={makeSignInRoute} />
+        <Stack.Screen name="SignUp" component={makeSignUpRoute} />
+      </Stack.Navigator>
+    </NavigationContainer>
+
+
   );
 }
