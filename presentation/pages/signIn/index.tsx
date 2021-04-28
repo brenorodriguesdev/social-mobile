@@ -36,6 +36,7 @@ export function SignIn({ signInUseCase }: SignInProps) {
                 String(accessToken)
             );
 
+            console.log(accessToken)
             console.log(email)
             console.log(password)
         }

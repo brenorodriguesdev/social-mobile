@@ -6,7 +6,7 @@ export class SignInService implements SignInUseCase {
     constructor(private readonly httpClient: HttpClient) { }
 
     async sign(signInModel: SignInModel): Promise<string | Error> {
-        const accessToken = await this.httpClient.post(signInModel)
+        const { accessToken } = await this.httpClient.post(signInModel)
         if (accessToken instanceof Error) {
             throw new Error('Credenciais Inválidas!')
         }
