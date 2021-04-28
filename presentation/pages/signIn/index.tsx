@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { Validator } from '../../../validation/contracts/validator';
 import { SignInUseCase } from '../../../domain/useCases/sign-in';
+import { SaveAccessToken } from '../../../data/contracts/save-access-token';
 
 
 import { Button, ErrorText, Input } from '../../components';
@@ -16,11 +17,12 @@ import { Button, ErrorText, Input } from '../../components';
 import styles from './styles'
 
 interface SignInProps {
+    saveAccessToken: SaveAccessToken
     signInUseCase: SignInUseCase
     validator: Validator
     navigation: any
 }
-export function SignIn({ signInUseCase, validator, navigation }: SignInProps) {
+export function SignIn({ signInUseCase, validator, navigation, saveAccessToken }: SignInProps) {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -37,10 +39,8 @@ export function SignIn({ signInUseCase, validator, navigation }: SignInProps) {
                 password
             })
 
-            await AsyncStorage.setItem(
-                'accessToken',
-                String(accessToken)
-            );
+            await saveAccessToken.save(String(accessToken))
+
 
             setMainError('')
             navigation.navigate('Home')
