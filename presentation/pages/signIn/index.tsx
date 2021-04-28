@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
     View,
+    Image,
     Text,
     TouchableOpacity,
     StatusBar
@@ -77,7 +78,6 @@ export function SignIn({ signInUseCase, validator }: SignInProps) {
         <>
             <StatusBar barStyle="dark-content" backgroundColor="#FFF" />
             <View style={container}>
-
                 <Input label='Email' keyboardType="email-address" onChangeText={(value: string) => { setEmail(value) }} onBlur={validateEmail} error={emailError.length > 0} />
                 <ErrorText text={emailError} />
                 <Input label='Senha' secureTextEntry={true} textContentType="password" onChangeText={(value: string) => { setPassword(value) } } onBlur={validatePassword} error={passwordError.length > 0} />
