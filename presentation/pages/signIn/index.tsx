@@ -11,7 +11,7 @@ import { Validator } from '../../../validation/contracts/validator';
 import { SignInUseCase } from '../../../domain/useCases/sign-in';
 
 
-import { Button, Input } from '../../components';
+import { Button, ErrorText, Input } from '../../components';
 
 import styles from './styles'
 
@@ -25,6 +25,7 @@ export function SignIn({ signInUseCase, validator }: SignInProps) {
     const [password, setPassword] = useState('')
     const [emailError, setEmailError] = useState('')
     const [passwordError, setPasswordError] = useState('')
+    const [mainError, setMainError] = useState('')
 
     const { container } = styles;
 
@@ -42,24 +43,32 @@ export function SignIn({ signInUseCase, validator }: SignInProps) {
 
         }
         catch (error) {
-            console.log(error.message)
+            setMainError(error.message)
         }
+    }
+
+    const validateEmail = () => {
+        const error = validator.validate({ email }, 'email')
+        setEmailError(error ? error.message : '')
+    }
+
+    const validatePassword = () => {
+        const error = validator.validate({ password }, 'password')
+        setPasswordError(error ? error.message : '')
     }
 
     useEffect(() => {
 
-        const error = validator.validate({ email }, 'email')
-        if (error) {
-            setEmailError(error.message)
+        if (email) {
+            validateEmail()
         }
 
     }, [email])
 
     useEffect(() => {
 
-        const error = validator.validate({ password }, 'password')
-        if (error) {
-            setPasswordError(error.message)
+        if (password) {
+            validatePassword()
         }
 
     }, [password])
@@ -69,11 +78,14 @@ export function SignIn({ signInUseCase, validator }: SignInProps) {
             <StatusBar barStyle="dark-content" backgroundColor="#FFF" />
             <View style={container}>
 
-                <Input label='Email' keyboardType="email-address" onChangeText={(value: string) => { setEmail(value) }} />
-                <Input label='Senha' secureTextEntry={true} textContentType="password" onChangeText={(value: string) => { setPassword(value) }} />
-                <Button text="Entrar" disabled={!email || !password} onClick={enter} />
+                <Input label='Email' keyboardType="email-address" onChangeText={(value: string) => { setEmail(value) }} onBlur={validateEmail} error={emailError.length > 0} />
+                <ErrorText text={emailError} />
+                <Input label='Senha' secureTextEntry={true} textContentType="password" onChangeText={(value: string) => { setPassword(value) } } onBlur={validatePassword} error={passwordError.length > 0} />
+                <ErrorText text={passwordError} />
+                <Button text="Entrar" disabled={!email || !password || emailError.length > 0 || passwordError.length > 0} onClick={enter} />
+                <ErrorText text={mainError} />
 
-                <View style={{ flexDirection: 'row' }}>
+                <View style={{ flexDirection: 'row', marginTop: 12 }}>
                     <TouchableOpacity style={{ marginRight: 12 }}>
                         <Text>Esqueceu sua senha?</Text>
                     </TouchableOpacity>
@@ -81,6 +93,7 @@ export function SignIn({ signInUseCase, validator }: SignInProps) {
                         <Text>Criar Conta</Text>
                     </TouchableOpacity>
                 </View>
+
 
             </View>
         </>

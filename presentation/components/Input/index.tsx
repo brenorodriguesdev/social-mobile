@@ -4,13 +4,13 @@ import styles from './styles'
 
 export function Input(props: any) {
     const { input } = styles
-
+    const color = props.error ? "red" : "#0080ff"
     return (
         <TextInput
             {...props}
             mode="outlined"
             style={input}
-            theme={{ colors: { primary: "#0080ff" } }}
+            theme={{ colors: { primary: color } }}
         />
     )
 }
