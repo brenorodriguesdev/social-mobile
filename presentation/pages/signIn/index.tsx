@@ -3,7 +3,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
     View,
-    Image,
     Text,
     TouchableOpacity,
     StatusBar

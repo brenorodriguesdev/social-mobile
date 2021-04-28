@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import {
     View,
-    Text,
-    TouchableOpacity,
     StatusBar
 } from 'react-native';
+import { CreateUserUseCase } from '../../../domain/useCases/create-user';
 import { Validator } from '../../../validation/contracts/validator';
 
 
@@ -14,10 +13,11 @@ import { Button, ErrorText, Input } from '../../components';
 import styles from './styles'
 
 interface SignUpProps {
+    createUserUseCase: CreateUserUseCase
     validator: Validator
 }
 
-export function SignUp({ validator }: SignUpProps) {
+export function SignUp({ createUserUseCase, validator }: SignUpProps) {
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -34,8 +34,11 @@ export function SignUp({ validator }: SignUpProps) {
 
     const register = async () => {
         try {
-
-
+            await createUserUseCase.create({
+                name,
+                email,
+                password
+            })
         }
         catch (error) {
             setMainError(error.message)

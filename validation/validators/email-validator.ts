@@ -7,7 +7,7 @@ export class EmailValidator implements Validator {
     validate(data: any): Error | void {
         const isValid = validator.isEmail(data[this.fieldName])
         if (!isValid) {
-            return new Error(`${this.fieldName} é um campo inválido!`)
+            return new Error(`esse campo é inválido!`)
         }
     }
 }
