@@ -1,9 +1,9 @@
 import { Text, TouchableOpacity } from "react-native"
 import React from 'react';
-import { Ionicons } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 
 
-export function AddButton() {
+export function BlockButton() {
     return (
         <>
             <TouchableOpacity style={{
@@ -11,12 +11,13 @@ export function AddButton() {
                 height: 50,
                 justifyContent: 'center',
                 alignItems: 'center',
+                marginLeft: 6,
                 marginBottom: 12,
                 marginTop: 36
             }}>
-                <Ionicons name="person-add" size={30} color="black" />
+                <Entypo name="block" size={30} color="black" />
                 <Text>
-                    Adicionar
+                    Bloquear
                             </Text>
             </TouchableOpacity>
 
