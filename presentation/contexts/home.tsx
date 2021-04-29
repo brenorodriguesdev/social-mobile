@@ -7,11 +7,14 @@ interface HomeContextProps {
     invites: InviteModel[],
     setInvites: (invites: InviteModel[]) => void
     removeInvite: (id: number) => void
+    countNotification: number
+    setCountNotification: (countNotification: number) => void
 }
 const HomeContext = createContext<HomeContextProps>({} as HomeContextProps)
 
 function HomeProvider({ children }: any) {
 
+    const [countNotification, setCountNotification] = useState(0)
     const [menuIndex, setMenuIndex] = useState(0)
     const [invites, setInvites] = useState<InviteModel[]>([])
 
@@ -22,7 +25,7 @@ function HomeProvider({ children }: any) {
     }
 
     return (
-        <HomeContext.Provider value={{ menuIndex, setMenuIndex, invites, setInvites, removeInvite }}>
+        <HomeContext.Provider value={{ menuIndex, setMenuIndex, invites, setInvites, removeInvite, countNotification, setCountNotification }}>
             {children}
         </HomeContext.Provider>
     )

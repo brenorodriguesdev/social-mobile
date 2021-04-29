@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { InviteModel } from '../../../domain/models/invite';
 import { UserModel } from '../../../domain/models/user';
+import { GetCountNotificationUseCase } from '../../../domain/useCases/get-count-notification';
 import { GetInviteListUseCase } from '../../../domain/useCases/get-invite-list';
 import { SearchUserUseCase } from '../../../domain/useCases/search-user';
 import { SearchForm, TabNavigation, NotFound, UserList, UserRow, NotificationListComponent } from '../../components';
@@ -22,13 +23,14 @@ import styles from './styles'
 interface HomeProps {
     searchUserUseCase: SearchUserUseCase
     getInviteListUseCase: GetInviteListUseCase
+    getCountNotificationUseCase: GetCountNotificationUseCase
     navigation: any
 }
 
-export function Home({ navigation, searchUserUseCase, getInviteListUseCase }: HomeProps) {
+export function Home({ navigation, searchUserUseCase, getInviteListUseCase, getCountNotificationUseCase }: HomeProps) {
 
     const { container } = styles;
-    const { menuIndex, invites, setInvites } = useContext(HomeContext)
+    const { menuIndex, invites, setInvites, setCountNotification } = useContext(HomeContext)
     const [searchText, setSearchText] = useState('')
     const [users, setUsers] = useState<UserModel[]>([])
 
@@ -55,6 +57,15 @@ export function Home({ navigation, searchUserUseCase, getInviteListUseCase }: Ho
                 setInvites(invites)
             } catch (error) {
                 setInvites([])
+            }
+        }
+
+        async function getCountNotification() {
+            try {
+                const count = await getCountNotificationUseCase.get()
+                setCountNotification(count)
+            } catch (error) {
+
             }
         }
         if (menuIndex === 3) {
