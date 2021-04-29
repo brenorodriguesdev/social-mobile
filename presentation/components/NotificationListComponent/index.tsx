@@ -3,6 +3,7 @@ import React from 'react';
 import { InviteModel } from "../../../domain/models/invite";
 import { NotificationComponent } from "../NotificationComponent";
 import { makeAcceptInviteService } from "../../../main/factories/services/accept-invite-factory";
+import { makeRefuseInviteService } from "../../../main/factories/services/refuse-invite-factory";
 
 interface NotificationListProps {
     invites: InviteModel[]
@@ -15,7 +16,7 @@ export function NotificationListComponent({ invites }: NotificationListProps) {
 
             <View style={{ height: Dimensions.get('window').height * 75 / 100 }}>
                 <ScrollView>
-                    {invites.map(invite => (<NotificationComponent invite={invite} acceptInviteUseCase={makeAcceptInviteService()} />))}
+                    {invites.map(invite => (<NotificationComponent invite={invite} acceptInviteUseCase={makeAcceptInviteService()} refuseInviteUseCase={makeRefuseInviteService()} />))}
                 </ScrollView>
             </View>
         </>
