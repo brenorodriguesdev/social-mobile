@@ -54,6 +54,7 @@ export function Home({ navigation, searchUserUseCase, getInviteListUseCase }: Ho
         async function getInviteList() {
             try {
                 const invites = await getInviteListUseCase.get()
+                console.log(invites)
                 setInvites(invites)
             } catch (error) {
                 setInvites([])
@@ -83,7 +84,7 @@ export function Home({ navigation, searchUserUseCase, getInviteListUseCase }: Ho
                 }
 
                 {menuIndex === 3 && <NotificationListComponent invites={invites} />}
-                
+
             </View>
 
             <TabNavigation navigation={navigation} />
