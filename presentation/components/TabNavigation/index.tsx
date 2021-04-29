@@ -1,9 +1,9 @@
-import { View, TouchableOpacity, Dimensions } from "react-native"
+import { View, TouchableOpacity, Dimensions, Text } from "react-native"
 import React, { useState } from 'react';
-import { Entypo, MaterialIcons } from "@expo/vector-icons";
+import { Entypo, Ionicons, MaterialIcons } from "@expo/vector-icons";
 
 
-export function TabNavigation({ navigation } : any) {
+export function TabNavigation({ navigation }: any) {
 
     const [menuIndex, setMenuIndex] = useState(0)
 
@@ -17,7 +17,7 @@ export function TabNavigation({ navigation } : any) {
                 marginBottom: 12,
                 marginTop: 12
             }}>
-                <MaterialIcons name="home" size={20} color={menuIndex === 0 ? "#0080ff" : "#0080ff80"}/>
+                <MaterialIcons name="home" size={24} color={menuIndex === 0 ? "#0080ff" : "#0080ff80"} />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => setMenuIndex(1)} disabled={menuIndex === 1} style={{
                 width: 50,
@@ -29,7 +29,7 @@ export function TabNavigation({ navigation } : any) {
                 marginBottom: 12,
                 marginTop: 12
             }}>
-                <MaterialIcons name="settings" size={20} color={menuIndex === 1 ? "#0080ff" : "#0080ff80"} />
+                <MaterialIcons name="settings" size={24} color={menuIndex === 1 ? "#0080ff" : "#0080ff80"} />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => setMenuIndex(2)} disabled={menuIndex === 2} style={{
                 width: 50,
@@ -42,7 +42,8 @@ export function TabNavigation({ navigation } : any) {
             }}>
                 <Entypo name="chat" size={20} color={menuIndex === 2 ? "#0080ff" : "#0080ff80"} />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => { setMenuIndex(3); navigation.navigate('SignIn') }} disabled={menuIndex === 3} style={{
+
+            <TouchableOpacity onPress={() => setMenuIndex(3)} disabled={menuIndex === 3} style={{
                 width: 50,
                 height: 50,
                 justifyContent: 'center',
@@ -51,7 +52,22 @@ export function TabNavigation({ navigation } : any) {
                 marginBottom: 12,
                 marginTop: 12
             }}>
-                <MaterialIcons name="logout" size={20} color={menuIndex === 3 ? "#0080ff" : "#0080ff80"} />
+                <Ionicons name="notifications" size={24} color={menuIndex === 3 ? "#0080ff" : "#0080ff80"} />
+                <View style={{ width: 15, height: 15, borderRadius: 7.5, backgroundColor: 'red', position: 'absolute', top: 8, left: 28, justifyContent:"center", alignItems:'center' }}>
+                    <Text style={{color:'white', fontSize:10}}>1</Text>
+                </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => { setMenuIndex(4); navigation.navigate('SignIn') }} disabled={menuIndex === 4} style={{
+                width: 50,
+                height: 50,
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginLeft: 6,
+                marginBottom: 12,
+                marginTop: 12
+            }}>
+                <MaterialIcons name="logout" size={24} color={menuIndex === 4 ? "#0080ff" : "#0080ff80"} />
             </TouchableOpacity>
         </View>
     )
