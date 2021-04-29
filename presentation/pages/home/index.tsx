@@ -10,6 +10,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import { UserModel } from '../../../domain/models/user';
+import { GetInviteListUseCase } from '../../../domain/useCases/get-invite-list';
 import { SearchUserUseCase } from '../../../domain/useCases/search-user';
 import { SearchForm, TabNavigation, NotFound, UserList, UserRow, NotificationListComponent } from '../../components';
 
@@ -18,10 +19,11 @@ import styles from './styles'
 
 interface HomeProps {
     searchUserUseCase: SearchUserUseCase
+    getInviteListUseCase: GetInviteListUseCase
     navigation: any
 }
 
-export function Home({ navigation, searchUserUseCase }: HomeProps) {
+export function Home({ navigation, searchUserUseCase, getInviteListUseCase }: HomeProps) {
 
     const { container } = styles;
     const [searchText, setSearchText] = useState('')
