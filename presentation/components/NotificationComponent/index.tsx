@@ -4,17 +4,20 @@ import { EvilIcons, AntDesign, MaterialCommunityIcons } from "@expo/vector-icons
 import { InviteModel } from "../../../domain/models/invite";
 import { HomeContext } from "../../contexts/home";
 import { AcceptInviteUseCase } from "../../../domain/models/accept-invite";
+import { RefuseInviteUseCase } from "../../../domain/useCases/refuse-invite";
 
 interface NotificationComponentProps {
     invite: InviteModel,
     acceptInviteUseCase: AcceptInviteUseCase
+    refuseInviteUseCase: RefuseInviteUseCase
 }
 
-export function NotificationComponent({ invite, acceptInviteUseCase }: NotificationComponentProps) {
+export function NotificationComponent({ invite, acceptInviteUseCase, refuseInviteUseCase }: NotificationComponentProps) {
 
     const { removeInvite } = useContext(HomeContext)
 
     const acceptInvite = async () => { try { await acceptInviteUseCase.accept(invite.id); removeInvite(invite.id) } catch (error) { } }
+    const refuseInvite = async () => { try { await refuseInviteUseCase.refuse(invite.id); removeInvite(invite.id) } catch (error) { } }
 
     return (
 
@@ -34,7 +37,7 @@ export function NotificationComponent({ invite, acceptInviteUseCase }: Notificat
                         <Text style={{ fontWeight: 'bold', fontSize: 8 }}>Aceitar</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center', marginLeft: 60 }} onPress={() => removeInvite(invite.id)}>
+                    <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center', marginLeft: 60 }} onPress={() => refuseInvite()}>
                         <MaterialCommunityIcons name="cancel" size={18} />
                         <Text style={{ fontWeight: 'bold', fontSize: 8 }}>Recusar</Text>
                     </TouchableOpacity>
