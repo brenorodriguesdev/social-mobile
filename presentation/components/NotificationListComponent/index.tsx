@@ -2,7 +2,7 @@ import { Text, View, ScrollView, TouchableOpacity, Dimensions } from "react-nati
 import React from 'react';
 import { EvilIcons, AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
 
-export function NotificationComponent() {
+export function NotificationListComponent() {
     return (
         <View style={{
             flex: 1,

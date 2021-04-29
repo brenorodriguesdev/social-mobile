@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { UserModel } from '../../../domain/models/user';
 import { SearchUserUseCase } from '../../../domain/useCases/search-user';
-import { SearchForm, TabNavigation, NotFound, UserList, UserRow, NotificationComponent } from '../../components';
+import { SearchForm, TabNavigation, NotFound, UserList, UserRow, NotificationListComponent } from '../../components';
 
 
 import styles from './styles'
@@ -47,7 +47,7 @@ export function Home({ navigation, searchUserUseCase }: HomeProps) {
         <>
             <StatusBar barStyle="dark-content" backgroundColor="#FFF" />
 
-            <NotificationComponent />
+            <NotificationListComponent />
             {/* 
             <View style={container}>
                 <SearchForm text="Pesquisar por pessoas..." change={(value) => setSearchText(value)} />
