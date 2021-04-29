@@ -44,7 +44,7 @@ export function Home({ navigation, searchUserUseCase }: HomeProps) {
             <View style={container}>
                 <SearchForm text="Pesquisar por pessoas..." change={(value) => setSearchText(value)} />
 
-                {searchText.length > 0 && users.length > 0 ? <UserList users={users} /> : searchText.length > 0 && <NotFound />}
+                {searchText.length > 0 && users.length > 0 ? <UserList users={users} navigation={navigation} /> : searchText.length > 0 && <NotFound />}
 
                 <TabNavigation navigation={navigation} />
             </View>
