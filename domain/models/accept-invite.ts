@@ -1,3 +1,3 @@
 export interface AcceptInviteUseCase {
-    accept(id: number): Promise<void | Error>
+    accept(idConvite: number): Promise<void | Error>
 }
