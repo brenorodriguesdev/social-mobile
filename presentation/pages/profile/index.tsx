@@ -26,7 +26,7 @@ export function Profile({ navigation }: ProfileProps) {
             <StatusBar barStyle="dark-content" backgroundColor="#FFF" />
             <View style={container}>
                 <ProfileHeader name="Breno Rodrigues" />
-                <FriendList />
+                <FriendList users={[]} />
                 <View style={{ flexDirection: "row", justifyContent: 'space-around', alignItems: 'center', width: Dimensions.get('window').width, height: Dimensions.get('window').height * 50 / 100 }} />
             </View>
         </>

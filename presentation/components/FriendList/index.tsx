@@ -1,9 +1,15 @@
 import { Text, View, Dimensions, ScrollView } from "react-native"
 import React from 'react';
-import { EvilIcons } from "@expo/vector-icons";
+import { EvilIcons, FontAwesome5 } from "@expo/vector-icons";
+import { UserModel } from "../../../domain/models/user";
+import { NotFound } from "../NotFound";
 
-export function FriendList() {
+interface FriendListProps {
+    users: UserModel[]
+}
+export function FriendList({ users }: FriendListProps) {
     return (
+        users.length > 0 ?
         <View style={{ width: Dimensions.get('window').width * 75 / 100 }}>
             <Text style={{ fontSize: 20, fontWeight: 'bold', marginTop: 12, marginBottom: 24 }}>Amigos</Text>
             <ScrollView horizontal={true}>
@@ -23,5 +29,8 @@ export function FriendList() {
                 </View>
             </ScrollView>
         </View>
+        :
+        <NotFound text="Ops, essa pessoa não tem amigos" style={{marginTop: 72}} />
+    
     )
 }

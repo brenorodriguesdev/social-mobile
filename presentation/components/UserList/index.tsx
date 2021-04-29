@@ -2,14 +2,10 @@ import { Text, View, Dimensions } from "react-native"
 import React from 'react';
 import { UserRow } from "../UserRow";
 import { ScrollView } from "react-native-gesture-handler";
-
-interface User {
-    id: number
-    name: string
-}
+import { UserModel } from "../../../domain/models/user";
 
 interface UserListProps {
-    users: User[]
+    users: UserModel[]
     navigation: any
 }
 
