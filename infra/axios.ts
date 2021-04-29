@@ -10,7 +10,7 @@ export class Axios implements HttpClient {
             if (accessToken != undefined) {
                 headers.Authorization = `Bearer ${accessToken}`
             }
-            const response = await api.post(this.route, body, headers)
+            const response = await api.post(this.route, body, { headers})
             return response.data
         } catch (error) {
             return new Error(error.response.data.message)

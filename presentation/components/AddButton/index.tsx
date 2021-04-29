@@ -10,7 +10,7 @@ interface AddButtonProps {
 export function AddButton({ id, sendInviteUseCase }: AddButtonProps) {
 
     const sendInvite = async () => {
-        try { await sendInviteUseCase.send(id) } catch (error) {}
+        try { await sendInviteUseCase.send(id) } catch (error) { console.log(error) }
     }
     return (
         <>
