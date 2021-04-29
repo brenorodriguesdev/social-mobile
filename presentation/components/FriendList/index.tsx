@@ -7,6 +7,7 @@ import { NotFound } from "../NotFound";
 interface FriendListProps {
     users: UserModel[]
 }
+
 export function FriendList({ users }: FriendListProps) {
     return (
         users.length > 0 ?
