@@ -30,7 +30,8 @@ export function Profile({ route, getFriendListUseCase, navigation }: ProfileProp
             const usersModel = await getFriendListUseCase.get(user.id)
             setUsers(usersModel)
         }
-    })
+        getFriendList()
+    }, [])
 
     return (
         <>

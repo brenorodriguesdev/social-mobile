@@ -10,6 +10,7 @@ interface UserListProps {
 }
 
 export function UserList({ users, navigation }: UserListProps) {
+    console.log(users)
     return (
         <>
             <Text style={{ color: "black", fontSize: 24, fontWeight: 'bold', alignSelf: 'flex-start', marginLeft: 36 }}>Resultados</Text>
