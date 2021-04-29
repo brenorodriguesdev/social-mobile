@@ -47,7 +47,20 @@ export function Home({ navigation, searchUserUseCase }: HomeProps) {
         <>
             <StatusBar barStyle="dark-content" backgroundColor="#FFF" />
 
-            <NotificationListComponent />
+            <NotificationListComponent invites={[
+                {
+                    id: 1,
+                    name: 'Gustavo Lima'
+                },
+                {
+                    id: 2,
+                    name: 'Max Wesley'
+                },
+                {
+                    id: 1,
+                    name: 'Evandro Siqueira'
+                }
+            ]} />
             {/* 
             <View style={container}>
                 <SearchForm text="Pesquisar por pessoas..." change={(value) => setSearchText(value)} />
