@@ -37,7 +37,7 @@ export function Profile({ route, getFriendListUseCase, navigation }: ProfileProp
         <>
             <StatusBar barStyle="dark-content" backgroundColor="#FFF" />
             <View style={container}>
-                <ProfileHeader name={user.name} />
+                <ProfileHeader user={user} />
                 <FriendList users={users} />
                 <View style={{ flexDirection: "row", justifyContent: 'space-around', alignItems: 'center', width: Dimensions.get('window').width, height: Dimensions.get('window').height * 50 / 100 }} />
             </View>
