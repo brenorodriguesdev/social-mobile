@@ -28,11 +28,9 @@ interface HomeProps {
 export function Home({ navigation, searchUserUseCase, getInviteListUseCase }: HomeProps) {
 
     const { container } = styles;
-    const { menuIndex } = useContext(HomeContext)
+    const { menuIndex, invites, setInvites } = useContext(HomeContext)
     const [searchText, setSearchText] = useState('')
     const [users, setUsers] = useState<UserModel[]>([])
-    const [invites, setInvites] = useState<InviteModel[]>([])
-
 
     useEffect(() => {
         async function searchUser() {
@@ -54,7 +52,6 @@ export function Home({ navigation, searchUserUseCase, getInviteListUseCase }: Ho
         async function getInviteList() {
             try {
                 const invites = await getInviteListUseCase.get()
-                console.log(invites)
                 setInvites(invites)
             } catch (error) {
                 setInvites([])
@@ -73,9 +70,8 @@ export function Home({ navigation, searchUserUseCase, getInviteListUseCase }: Ho
 
             <View style={container}>
 
-
-                {menuIndex === 0 
-                &&
+                {(menuIndex === 0 || menuIndex === 1)
+                    &&
                     <>
                         <SearchForm text="Pesquisar por pessoas..." change={(value) => setSearchText(value)} />
 
@@ -83,11 +79,13 @@ export function Home({ navigation, searchUserUseCase, getInviteListUseCase }: Ho
                     </>
                 }
 
+                {menuIndex === 2 && <SearchForm text="Pesquisar por conversas..." change={() => {}} />}
+
                 {menuIndex === 3 && <NotificationListComponent invites={invites} />}
 
+                <TabNavigation navigation={navigation} />
             </View>
 
-            <TabNavigation navigation={navigation} />
 
         </>
     );
