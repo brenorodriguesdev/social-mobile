@@ -14,10 +14,13 @@ import { FriendList, ProfileHeader } from '../../components';
 import styles from './styles'
 
 interface ProfileProps {
+    route: any
     navigation: any
 }
 
-export function Profile({ navigation }: ProfileProps) {
+export function Profile({ route, navigation }: ProfileProps) {
+
+    const { user } = route.params;
 
     const { container } = styles;
 
@@ -25,7 +28,7 @@ export function Profile({ navigation }: ProfileProps) {
         <>
             <StatusBar barStyle="dark-content" backgroundColor="#FFF" />
             <View style={container}>
-                <ProfileHeader name="Breno Rodrigues" />
+                <ProfileHeader name={user.name} />
                 <FriendList users={[{
                     id: 1,
                     name: "Gustavo Lima"

@@ -15,7 +15,7 @@ export function UserList({ users, navigation }: UserListProps) {
             <Text style={{ color: "black", fontSize: 24, fontWeight: 'bold', alignSelf: 'flex-start', marginLeft: 36 }}>Resultados</Text>
             <View style={{ height: Dimensions.get('window').height * 60 / 100 }}>
                 <ScrollView>
-                    {users.map(user => <UserRow key={user.id} name={user.name} navigation={navigation} />)}
+                    {users.map(user => <UserRow key={user.id} user={user} navigation={navigation} />)}
                 </ScrollView>
             </View>
         </>
