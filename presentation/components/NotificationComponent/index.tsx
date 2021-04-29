@@ -3,14 +3,18 @@ import React, { useContext } from 'react';
 import { EvilIcons, AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
 import { InviteModel } from "../../../domain/models/invite";
 import { HomeContext } from "../../contexts/home";
+import { AcceptInviteUseCase } from "../../../domain/models/accept-invite";
 
-interface NotificationComponentProps { 
-    invite: InviteModel
+interface NotificationComponentProps {
+    invite: InviteModel,
+    acceptInviteUseCase: AcceptInviteUseCase
 }
 
-export function NotificationComponent({ invite }: NotificationComponentProps) {
+export function NotificationComponent({ invite, acceptInviteUseCase }: NotificationComponentProps) {
 
     const { removeInvite } = useContext(HomeContext)
+
+    const acceptInvite = async () => { try { await acceptInviteUseCase.accept(invite.id); removeInvite(invite.id) } catch (error) { } }
 
     return (
 
@@ -24,8 +28,8 @@ export function NotificationComponent({ invite }: NotificationComponentProps) {
                     <Text style={{ fontWeight: 'bold', fontSize: 10 }}>{invite.name}</Text>
                 </View>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', width: Dimensions.get('window').width * 50 / 100 }}>
-                    <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center', marginLeft: 24 }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', width: Dimensions.get('window').width * 50 / 100 }} >
+                    <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center', marginLeft: 24 }} onPress={() => acceptInvite()}>
                         <AntDesign name="adduser" size={18} />
                         <Text style={{ fontWeight: 'bold', fontSize: 8 }}>Aceitar</Text>
                     </TouchableOpacity>

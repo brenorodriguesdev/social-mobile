@@ -2,6 +2,7 @@ import { Text, View, ScrollView, Dimensions } from "react-native"
 import React from 'react';
 import { InviteModel } from "../../../domain/models/invite";
 import { NotificationComponent } from "../NotificationComponent";
+import { makeAcceptInviteService } from "../../../main/factories/services/accept-invite-factory";
 
 interface NotificationListProps {
     invites: InviteModel[]
@@ -14,7 +15,7 @@ export function NotificationListComponent({ invites }: NotificationListProps) {
 
             <View style={{ height: Dimensions.get('window').height * 75 / 100 }}>
                 <ScrollView>
-                    {invites.map(invite => (<NotificationComponent invite={invite} />))}
+                    {invites.map(invite => (<NotificationComponent invite={invite} acceptInviteUseCase={makeAcceptInviteService()} />))}
                 </ScrollView>
             </View>
         </>
