@@ -8,9 +8,13 @@ interface AddButtonProps {
     sendInviteUseCase: SendInviteUseCase
 }
 export function AddButton({ id, sendInviteUseCase }: AddButtonProps) {
+
+    const sendInvite = async () => {
+        try { await sendInviteUseCase.send(id) } catch (error) {}
+    }
     return (
         <>
-            <TouchableOpacity style={{
+            <TouchableOpacity onPress={sendInvite} style={{
                 width: 64,
                 height: 50,
                 justifyContent: 'center',
