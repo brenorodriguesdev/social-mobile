@@ -14,6 +14,7 @@ import { UserModel } from '../../../domain/models/user';
 import { GetCountNotificationUseCase } from '../../../domain/useCases/get-count-notification';
 import { GetInviteListUseCase } from '../../../domain/useCases/get-invite-list';
 import { SearchUserUseCase } from '../../../domain/useCases/search-user';
+import { ViewNotificationUseCase } from '../../../domain/useCases/view-notification';
 import { SearchForm, TabNavigation, NotFound, UserList, UserRow, NotificationListComponent } from '../../components';
 import { HomeContext, HomeProvider } from '../../contexts/home';
 
@@ -24,10 +25,11 @@ interface HomeProps {
     searchUserUseCase: SearchUserUseCase
     getInviteListUseCase: GetInviteListUseCase
     getCountNotificationUseCase: GetCountNotificationUseCase
+    viewNotificationUseCase: ViewNotificationUseCase
     navigation: any
 }
 
-export function Home({ navigation, searchUserUseCase, getInviteListUseCase, getCountNotificationUseCase }: HomeProps) {
+export function Home({ navigation, searchUserUseCase, getInviteListUseCase, getCountNotificationUseCase, viewNotificationUseCase }: HomeProps) {
 
     const { container } = styles;
     const { menuIndex, invites, setInvites, setCountNotification } = useContext(HomeContext)
@@ -69,10 +71,15 @@ export function Home({ navigation, searchUserUseCase, getInviteListUseCase, getC
             }
         }
 
+        async function viewNotification() {
+            setCountNotification(0)
+            await viewNotificationUseCase.view()
+        }
+
         switch (menuIndex) {
             case 3:
                 getInviteList()
-                setCountNotification(0)
+                viewNotification()
                 break;
             default:
                 if (menuIndex !== 4) {
