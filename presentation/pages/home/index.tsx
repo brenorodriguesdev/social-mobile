@@ -74,10 +74,11 @@ export function Home({ navigation, searchUserUseCase, getInviteListUseCase, getC
                 getInviteList()
                 setCountNotification(0)
                 break;
-        }
-
-        if (menuIndex !== 2 && menuIndex !== 4) {
-            getCountNotification()
+            default:
+                if (menuIndex !== 4) {
+                    getCountNotification()
+                }
+                break;
         }
 
     }, [menuIndex])
