@@ -6,7 +6,7 @@ import { HomeContext } from "../../contexts/home";
 
 export function TabNavigation({ navigation }: any) {
 
-    const { menuIndex, setMenuIndex } = useContext(HomeContext)
+    const { menuIndex, setMenuIndex, countNotification } = useContext(HomeContext)
 
     return (
         <View style={{ flexDirection: "row", justifyContent: 'space-around', alignItems: 'center', backgroundColor: '#FCFCFC', width: Dimensions.get('window').width, height: 64 }}>
@@ -54,9 +54,9 @@ export function TabNavigation({ navigation }: any) {
                 marginTop: 12
             }}>
                 <Ionicons name="notifications" size={24} color={menuIndex === 3 ? "#0080ff" : "#0080ff80"} />
-                <View style={{ width: 15, height: 15, borderRadius: 7.5, backgroundColor: 'red', position: 'absolute', top: 8, left: 28, justifyContent: "center", alignItems: 'center' }}>
-                    <Text style={{ color: 'white', fontSize: 10 }}>1</Text>
-                </View>
+                {countNotification > 0 && <View style={{ width: 15, height: 15, borderRadius: 7.5, backgroundColor: 'red', position: 'absolute', top: 8, left: 28, justifyContent: "center", alignItems: 'center' }}>
+                    <Text style={{ color: 'white', fontSize: 10 }}>{countNotification}</Text>
+                </View>}
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => { setMenuIndex(4); navigation.navigate('SignIn') }} disabled={menuIndex === 4} style={{

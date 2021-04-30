@@ -68,12 +68,19 @@ export function Home({ navigation, searchUserUseCase, getInviteListUseCase, getC
 
             }
         }
-        
-        if (menuIndex === 3) {
-            getInviteList()
+
+        switch (menuIndex) {
+            case 3:
+                getInviteList()
+                break;
+            case 2:
+                setCountNotification(0)
+                break;
         }
 
-        getCountNotification()
+        if (menuIndex !== 2 && menuIndex !== 4) {
+            getCountNotification()
+        }
 
     }, [menuIndex])
 
