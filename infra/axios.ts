@@ -17,6 +17,19 @@ export class Axios implements HttpClient {
         }
     }
 
+    async put(body: any, accessToken?: string): Promise<any> {
+        try {
+            const headers: any = {}
+            if (accessToken != undefined) {
+                headers.Authorization = `Bearer ${accessToken}`
+            }
+            const response = await api.put(this.route, body, { headers})
+            return response.data
+        } catch (error) {
+            return new Error(error.response.data.message)
+        }
+    }
+
     async get(params: any, accessToken?: string): Promise<any> {
         try {
             const headers: any = {}
