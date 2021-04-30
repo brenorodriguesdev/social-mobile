@@ -9,7 +9,12 @@ import { makeViewNotificationService } from '../services/view-notification-servi
 export function makeHomeRoute(props: any) {
     return (
         <HomeProvider>
-            <Home {...props} searchUserUseCase={makeSearchUserService()} getInviteListUseCase={makeGetInviteListService()} getCountNotificationUseCase={makeGetCountNotificationService()} viewNotificationUseCase={makeViewNotificationService()} />
+            <Home {...props}
+                searchUserUseCase={makeSearchUserService()}
+                getInviteListUseCase={makeGetInviteListService()}
+                getCountNotificationUseCase={makeGetCountNotificationService()}
+                viewNotificationUseCase={makeViewNotificationService()}
+            />
         </HomeProvider>
     )
 }

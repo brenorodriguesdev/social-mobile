@@ -16,7 +16,7 @@ export function NotificationListComponent({ invites }: NotificationListProps) {
 
             <View style={{ height: Dimensions.get('window').height * 75 / 100 }}>
                 <ScrollView>
-                    {invites.map(invite => (<NotificationComponent invite={invite} acceptInviteUseCase={makeAcceptInviteService()} refuseInviteUseCase={makeRefuseInviteService()} />))}
+                    {invites.map(invite => (<NotificationComponent key={invite.id} invite={invite} acceptInviteUseCase={makeAcceptInviteService()} refuseInviteUseCase={makeRefuseInviteService()} />))}
                 </ScrollView>
             </View>
         </>
