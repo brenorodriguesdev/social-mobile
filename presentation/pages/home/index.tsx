@@ -72,8 +72,6 @@ export function Home({ navigation, searchUserUseCase, getInviteListUseCase, getC
         switch (menuIndex) {
             case 3:
                 getInviteList()
-                break;
-            case 2:
                 setCountNotification(0)
                 break;
         }
