@@ -1,6 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { LoadAccessToken } from "../data/contracts/load-access-token";
-import { SaveAccessToken } from "../data/contracts/save-access-token";
+import { LoadAccessToken, SaveAccessToken } from "../data/contracts";
 
 export class AsyncStorageInfra implements LoadAccessToken, SaveAccessToken {
     async load(): Promise<any> {
