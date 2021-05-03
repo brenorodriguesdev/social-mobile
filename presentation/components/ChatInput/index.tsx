@@ -1,44 +1,38 @@
-import { View, TextInput, Text, TouchableOpacity, Keyboard, Animated, Dimensions, StyleSheet, SafeAreaView, Button } from "react-native"
-import React, { useEffect, useRef, useState } from 'react';
-// import styles from './styles'
-import { EvilIcons } from "@expo/vector-icons";
-
-// interface SearchFormProps {
-//     text: string
-//     change: (text: string) => void;
-
-
-// }
-
-
-
-
+import { View, TextInput, Text, TouchableOpacity, Dimensions, Keyboard } from "react-native"
+import React, { useEffect, useState } from 'react';
+import styles from './styles'
 
 export function ChatInput() {
+
+  const { inputs } = styles
+  
+  const [keyboardStatus, setKeyboardStatus] = useState(false);
+  const _keyboardDidShow = () => setKeyboardStatus(true);
+  const _keyboardDidHide = () => setKeyboardStatus(false);
+
+    
+  useEffect(() => {
+      Keyboard.addListener("keyboardDidShow", _keyboardDidShow);
+      Keyboard.addListener("keyboardDidHide", _keyboardDidHide);
+
+      // cleanup function
+      return () => {
+          Keyboard.removeListener("keyboardDidShow", _keyboardDidShow);
+          Keyboard.removeListener("keyboardDidHide", _keyboardDidHide);
+      };
+  }, []);
   
   return (
-    <View>
-
+    <View style={[{ flexDirection: "row", flexWrap: "nowrap", justifyContent: "center", padding: 4 }, keyboardStatus && { marginBottom: 268 }]}>
+      <TextInput
+        style={[styles.inputs, { width: Dimensions.get('window').width * 95 / 100, textAlign: 'center', textAlignVertical: 'center' }]}
+        placeholder="Digite sua mensagem"
+        placeholderTextColor="#666"
+        keyboardType="default"
+      />
+      <TouchableOpacity style={{ position: 'absolute', top: 16, right: 24 }}>
+        <Text style={{ color: "#666" }}>Enviar</Text>
+      </TouchableOpacity>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: "center",
-      justifyContent: "center"
-    },
-    fadingContainer: {
-      padding: 20,
-      backgroundColor: "powderblue"
-    },
-    fadingText: {
-      fontSize: 28
-    },
-    buttonRow: {
-      flexBasis: 100,
-      justifyContent: "space-evenly",
-      marginVertical: 16
-    }
-  });
