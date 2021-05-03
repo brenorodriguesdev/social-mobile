@@ -1,6 +1,5 @@
-import { EvilIcons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
-import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Dimensions, SafeAreaView, StatusBar, Keyboard } from "react-native";
+import React, { useState } from 'react';
+import { View, StatusBar } from "react-native";
 import { ChatHeader, ChatInput, MessageList } from '../../components';
 
 export function Chat() {
