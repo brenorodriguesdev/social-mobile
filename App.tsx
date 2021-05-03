@@ -12,12 +12,12 @@ export default function App() {
   return (
 
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Chat">
-        <Stack.Screen options={{ title: 'Chat', headerShown: false }} name="Chat" component={Chat} />
+      <Stack.Navigator initialRouteName="SignIn">
         <Stack.Screen options={{ title: 'Entrar', headerShown: false }} name="SignIn" component={makeSignInRoute} />
         <Stack.Screen options={{ title: 'Cadastro' }} name="SignUp" component={makeSignUpRoute} />
         <Stack.Screen options={{ title: 'Página Inicial', headerShown: false }} name="Home" component={makeHomeRoute} />
         <Stack.Screen options={{ title: 'Perfil' }} name="Profile" component={makeProfileRoute} />
+        <Stack.Screen options={{ title: 'Chat', headerShown: false }} name="Chat" component={Chat} />
       </Stack.Navigator>
     </NavigationContainer>
 

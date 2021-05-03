@@ -15,7 +15,7 @@ import { GetCountNotificationUseCase } from '../../../domain/useCases/get-count-
 import { GetInviteListUseCase } from '../../../domain/useCases/get-invite-list';
 import { SearchUserUseCase } from '../../../domain/useCases/search-user';
 import { ViewNotificationUseCase } from '../../../domain/useCases/view-notification';
-import { SearchForm, TabNavigation, NotFound, UserList, UserRow, NotificationListComponent } from '../../components';
+import { SearchForm, TabNavigation, NotFound, UserList, UserRow, NotificationListComponent, ChatListComponent } from '../../components';
 import { HomeContext, HomeProvider } from '../../contexts/home';
 
 
@@ -97,7 +97,7 @@ export function Home({ navigation, searchUserUseCase, getInviteListUseCase, getC
 
             <View style={container}>
 
-                {(menuIndex === 0 || menuIndex === 1)
+                {(menuIndex === 0)
                     &&
                     <>
                         <SearchForm text="Pesquisar por pessoas..." change={(value) => setSearchText(value)} />
@@ -106,6 +106,8 @@ export function Home({ navigation, searchUserUseCase, getInviteListUseCase, getC
                     </>
                 }
 
+                {menuIndex === 1 && <ChatListComponent />}
+                
                 {menuIndex === 2 && <SearchForm text="Pesquisar por conversas..." change={() => { }} />}
 
                 {menuIndex === 3 ? invites.length > 0 ? <NotificationListComponent invites={invites} /> : <NotFound text="Ops, não foi encontrado nenhuma notificação" style={{ marginTop: Dimensions.get('window').height * 40 / 100 }} /> : null}
