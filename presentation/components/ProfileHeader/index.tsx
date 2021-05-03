@@ -8,10 +8,9 @@ import { ChatButton } from "../ChatButton";
 
 interface ProfileHeader {
     user: UserModel
-    isFriend: boolean
 }
 
-export function ProfileHeader({ user, isFriend }: ProfileHeader) {
+export function ProfileHeader({ user}: ProfileHeader) {
     return (
         <View style={{ alignItems: 'center', marginTop: 48, width: Dimensions.get('window').width * 90 / 100, height: 256, marginBottom: 12, borderColor: 'transparent', borderBottomColor: '#F0F0F0', borderWidth: 2 }}>
             <EvilIcons name="user" size={128} />
@@ -19,7 +18,7 @@ export function ProfileHeader({ user, isFriend }: ProfileHeader) {
 
             <View style={{ flexDirection: "row", justifyContent: 'space-around', alignItems: 'center', width: Dimensions.get('window').width * 75 / 100, height: Dimensions.get('window').height * 15 / 100 }}>
 
-                { isFriend ? <ChatButton /> : <AddButton id={user.id} sendInviteUseCase={makeSendInviteService()}/> }
+                { user.isFriend ? <ChatButton /> : <AddButton id={user.id} sendInviteUseCase={makeSendInviteService()}/> }
 
                 <BlockButton />
 

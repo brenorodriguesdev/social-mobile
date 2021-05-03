@@ -7,7 +7,7 @@ export function ChatButton() {
     return (
         <>
             <TouchableOpacity style={{
-                width: 64,
+                width: 68,
                 height: 50,
                 justifyContent: 'center',
                 alignItems: 'center',

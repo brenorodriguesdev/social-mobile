@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { makeHomeRoute, makeProfileRoute, makeSignInRoute, makeSignUpRoute } from './main/factories/routes';
 import { HomeProvider } from './presentation/contexts/home';
+import { Chat } from './presentation/pages/chat';
 
 const Stack = createStackNavigator();
 
@@ -11,7 +12,8 @@ export default function App() {
   return (
 
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="SignIn">
+      <Stack.Navigator initialRouteName="Chat">
+        <Stack.Screen options={{ title: 'Chat', headerShown: false }} name="Chat" component={Chat} />
         <Stack.Screen options={{ title: 'Entrar', headerShown: false }} name="SignIn" component={makeSignInRoute} />
         <Stack.Screen options={{ title: 'Cadastro' }} name="SignUp" component={makeSignUpRoute} />
         <Stack.Screen options={{ title: 'Página Inicial', headerShown: false }} name="Home" component={makeHomeRoute} />
