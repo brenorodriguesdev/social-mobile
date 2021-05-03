@@ -108,7 +108,7 @@ export function Home({ navigation, searchUserUseCase, getInviteListUseCase, getC
 
                 {menuIndex === 1 && <ChatListComponent />}
                 
-                {menuIndex === 2 && <SearchForm text="Pesquisar por conversas..." change={() => { }} />}
+                {menuIndex === 2 && <ChatListComponent /> }
 
                 {menuIndex === 3 ? invites.length > 0 ? <NotificationListComponent invites={invites} /> : <NotFound text="Ops, não foi encontrado nenhuma notificação" style={{ marginTop: Dimensions.get('window').height * 40 / 100 }} /> : null}
 
