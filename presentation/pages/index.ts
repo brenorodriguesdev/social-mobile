@@ -1,2 +1,5 @@
 export * from './signIn'
 export * from './signUp'
+export * from './profile'
+export * from './home'
+export * from './chat'
