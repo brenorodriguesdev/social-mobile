@@ -21,7 +21,6 @@ function HomeProvider({ children }: any) {
     const removeInvite = (id: number) => {
         const nowInvites = invites.filter(x => x.id != id)
         setInvites(nowInvites)
-        console.log(nowInvites)
     }
 
     return (

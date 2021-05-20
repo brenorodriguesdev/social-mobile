@@ -1,35 +1,32 @@
-import { AntDesign, Entypo, EvilIcons, Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import React, { useContext, useEffect, useState } from 'react';
 
 import {
-    Text,
     View,
     StatusBar,
     Dimensions,
-    ScrollView,
-    TouchableOpacity,
 } from 'react-native';
-import { InviteModel } from '../../../domain/models/invite';
 import { UserModel } from '../../../domain/models/user';
 import { GetCountNotificationUseCase } from '../../../domain/useCases/get-count-notification';
+import { GetFriendListUseCase } from '../../../domain/useCases/get-friend-list';
 import { GetInviteListUseCase } from '../../../domain/useCases/get-invite-list';
 import { SearchUserUseCase } from '../../../domain/useCases/search-user';
 import { ViewNotificationUseCase } from '../../../domain/useCases/view-notification';
-import { SearchForm, TabNavigation, NotFound, UserList, UserRow, NotificationListComponent, ChatListComponent } from '../../components';
-import { HomeContext, HomeProvider } from '../../contexts/home';
+import { SearchForm, TabNavigation, NotFound, UserList, NotificationListComponent, ChatListComponent } from '../../components';
+import { HomeContext } from '../../contexts/home';
 
 
 import styles from './styles'
 
 interface HomeProps {
     searchUserUseCase: SearchUserUseCase
+    getFriendListUseCase: GetFriendListUseCase
     getInviteListUseCase: GetInviteListUseCase
     getCountNotificationUseCase: GetCountNotificationUseCase
     viewNotificationUseCase: ViewNotificationUseCase
     navigation: any
 }
 
-export function Home({ navigation, searchUserUseCase, getInviteListUseCase, getCountNotificationUseCase, viewNotificationUseCase }: HomeProps) {
+export function Home({ navigation, searchUserUseCase, getFriendListUseCase, getInviteListUseCase, getCountNotificationUseCase, viewNotificationUseCase }: HomeProps) {
 
     const { container } = styles;
     const { menuIndex, invites, setInvites, setCountNotification } = useContext(HomeContext)
@@ -62,6 +59,15 @@ export function Home({ navigation, searchUserUseCase, getInviteListUseCase, getC
             }
         }
 
+        async function getFriendList() {
+            try {
+                const invites = await getFriendListUseCase.get()
+                setInvites(invites)
+            } catch (error) {
+                setInvites([])
+            }
+        }
+
         async function getCountNotification() {
             try {
                 const count = await getCountNotificationUseCase.get()
@@ -80,6 +86,9 @@ export function Home({ navigation, searchUserUseCase, getInviteListUseCase, getC
             case 3:
                 getInviteList()
                 viewNotification()
+                break;
+            case 2:
+                getFriendList()
                 break;
             default:
                 if (menuIndex !== 4) {
