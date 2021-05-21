@@ -5,7 +5,9 @@ import {
     StatusBar,
     Dimensions,
 } from 'react-native';
+import { ChatModel } from '../../../domain/models/chat';
 import { UserModel } from '../../../domain/models/user';
+import { GetAllChatUseCase } from '../../../domain/useCases/get-all-chat';
 import { GetCountNotificationUseCase } from '../../../domain/useCases/get-count-notification';
 import { GetFriendListUseCase } from '../../../domain/useCases/get-friend-list';
 import { GetInviteListUseCase } from '../../../domain/useCases/get-invite-list';
@@ -20,18 +22,21 @@ import styles from './styles'
 interface HomeProps {
     searchUserUseCase: SearchUserUseCase
     getFriendListUseCase: GetFriendListUseCase
+    getAllChatUseCase: GetAllChatUseCase
     getInviteListUseCase: GetInviteListUseCase
     getCountNotificationUseCase: GetCountNotificationUseCase
     viewNotificationUseCase: ViewNotificationUseCase
     navigation: any
 }
 
-export function Home({ navigation, searchUserUseCase, getFriendListUseCase, getInviteListUseCase, getCountNotificationUseCase, viewNotificationUseCase }: HomeProps) {
+export function Home({ navigation, searchUserUseCase, getFriendListUseCase, getAllChatUseCase, getInviteListUseCase, getCountNotificationUseCase, viewNotificationUseCase }: HomeProps) {
 
     const { container } = styles;
     const { menuIndex, invites, setInvites, setCountNotification } = useContext(HomeContext)
     const [searchText, setSearchText] = useState('')
     const [users, setUsers] = useState<UserModel[]>([])
+    const [chats, setChats] = useState<ChatModel[]>([])
+    const [friendList, setFriendList] = useState<UserModel[]>([])
 
     useEffect(() => {
         async function searchUser() {
@@ -61,9 +66,19 @@ export function Home({ navigation, searchUserUseCase, getFriendListUseCase, getI
 
         async function getFriendList() {
             try {
-                const friends = await getFriendListUseCase.get()
-                console.log(friends)
+                const friendList = await getFriendListUseCase.get()
+                setFriendList(friendList)
             } catch (error) {
+                setFriendList([])
+            }
+        }
+
+        async function getAllChat() {
+            try {
+                const chats = await getAllChatUseCase.get()
+                setChats(chats)
+            } catch (error) {
+                setChats([])
             }
         }
 
@@ -88,6 +103,7 @@ export function Home({ navigation, searchUserUseCase, getFriendListUseCase, getI
                 break;
             case 2:
                 getFriendList()
+                getAllChat()
                 break;
             default:
                 if (menuIndex !== 4) {
@@ -115,8 +131,8 @@ export function Home({ navigation, searchUserUseCase, getFriendListUseCase, getI
                 }
 
                 {menuIndex === 1 && <ChatListComponent />}
-                
-                {menuIndex === 2 && <ChatListComponent /> }
+
+                {menuIndex === 2 && <ChatListComponent />}
 
                 {menuIndex === 3 ? invites.length > 0 ? <NotificationListComponent invites={invites} /> : <NotFound text="Ops, não foi encontrado nenhuma notificação" style={{ marginTop: Dimensions.get('window').height * 40 / 100 }} /> : null}
 
