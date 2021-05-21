@@ -130,9 +130,9 @@ export function Home({ navigation, searchUserUseCase, getFriendListUseCase, getA
                     </>
                 }
 
-                {menuIndex === 1 && <ChatListComponent />}
+                {menuIndex === 1 && <ChatListComponent chatList={chats} />}
 
-                {menuIndex === 2 && <ChatListComponent />}
+                {menuIndex === 2 && <ChatListComponent chatList={chats} />}
 
                 {menuIndex === 3 ? invites.length > 0 ? <NotificationListComponent invites={invites} /> : <NotFound text="Ops, não foi encontrado nenhuma notificação" style={{ marginTop: Dimensions.get('window').height * 40 / 100 }} /> : null}
 
