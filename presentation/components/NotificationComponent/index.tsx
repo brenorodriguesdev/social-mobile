@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { EvilIcons, AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
 import { InviteModel } from "../../../domain/models/invite";
 import { HomeContext } from "../../contexts/home";
-import { AcceptInviteUseCase } from "../../../domain/models/accept-invite";
+import { AcceptInviteUseCase } from "../../../domain/useCases/accept-invite";
 import { RefuseInviteUseCase } from "../../../domain/useCases/refuse-invite";
 
 interface NotificationComponentProps {

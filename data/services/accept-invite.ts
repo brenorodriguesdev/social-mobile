@@ -1,4 +1,4 @@
-import { AcceptInviteUseCase } from "../../domain/models/accept-invite";
+import { AcceptInviteUseCase } from "../../domain/useCases/accept-invite";
 import { HttpClient } from "../contracts/http-client";
 import { LoadAccessToken } from "../contracts/load-access-token";
 
