@@ -61,10 +61,9 @@ export function Home({ navigation, searchUserUseCase, getFriendListUseCase, getI
 
         async function getFriendList() {
             try {
-                const invites = await getFriendListUseCase.get()
-                setInvites(invites)
+                const friends = await getFriendListUseCase.get()
+                console.log(friends)
             } catch (error) {
-                setInvites([])
             }
         }
 
